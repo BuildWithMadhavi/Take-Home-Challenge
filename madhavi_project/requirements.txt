@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+chromadb
+google-cloud-aiplatform
+pypdf
+pytest
+pytest-asyncio
+httpx
+python-dotenv

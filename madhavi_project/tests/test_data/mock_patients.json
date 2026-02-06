@@ -1,0 +1,4 @@
+[
+  {"patient_id": "patient_001", "symptoms": ["symptom_a", "symptom_b"], "age": 45},
+  {"patient_id": "patient_002", "symptoms": ["symptom_c"], "age": 30}
+]

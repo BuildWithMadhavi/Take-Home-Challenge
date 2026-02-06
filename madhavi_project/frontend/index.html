@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clinical Reasoning Platform</title>
+  <style>
+    :root {
+      --bg: #f5f2ea;
+      --ink: #1e1e1e;
+      --accent: #1a6b5d;
+      --panel: #ffffff;
+    }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 24px;
+      background: var(--panel);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    h1 { margin: 0 0 12px; }
+    label { display:block; margin: 12px 0 6px; }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    pre { background: #f0f0f0; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Clinical Reasoning Platform</h1>
+    <p>This tool supports clinical decision-making and does not provide diagnoses.</p>
+
+    <section>
+      <h2>Assess</h2>
+      <label>Patient ID</label>
+      <input id="patientId" placeholder="patient_001" />
+      <button onclick="runAssess()">Assess</button>
+    </section>
+
+    <section>
+      <h2>Chat</h2>
+      <label>Question</label>
+      <textarea id="question" rows="4"></textarea>
+      <button onclick="runChat()">Ask</button>
+    </section>
+
+    <pre id="output"></pre>
+  </main>
+
+  <script>
+    async function runAssess() {
+      const patientId = document.getElementById('patientId').value;
+      const res = await fetch('/assess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ patient_id: patientId })
+      });
+      document.getElementById('output').textContent = await res.text();
+    }
+    async function runChat() {
+      const question = document.getElementById('question').value;
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      document.getElementById('output').textContent = await res.text();
+    }
+  </script>
+</body>
+</html>
