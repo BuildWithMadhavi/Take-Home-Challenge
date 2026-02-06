@@ -58,3 +58,8 @@ Decision flow:
 - Part 1: Ingestion + RAG + FastAPI endpoints
 - Part 2: Tests and compliance guardrails
 - Evaluation: security, reliability, observability, and traceability covered in code and tests
+
+## 10. Future Enhancements
+- Add patient ID-based tool calling for structured data retrieval
+- Expand tests for grounding, citations, and refusal behaviour
+- Enhance citation display and persist chat memory for longer sessions 
